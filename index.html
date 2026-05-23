@@ -84,6 +84,14 @@
     footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.07); text-align: center; padding: 1.5rem 3rem; font-size: 0.8rem; color: rgba(255,255,255,0.35); }
     .divider { width: 60px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 2rem; }
     
+
+    /* DESIGN LIGHTBOX */
+    .design-lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:999; align-items:center; justify-content:center; flex-direction:column; gap:1rem; }
+    .design-lightbox.open { display:flex; }
+    .design-lightbox img { max-width:90vw; max-height:80vh; border-radius:12px; object-fit:contain; }
+    .design-lightbox-title { color:white; font-size:1rem; font-weight:500; letter-spacing:0.05em; }
+    .design-lightbox-close { position:absolute; top:1.5rem; right:2rem; color:white; font-size:2rem; cursor:pointer; }
+
     /* LIKE BUTTON */
     .like-section { text-align:center; padding: 2rem 0 1rem; }
     .like-btn {
@@ -227,59 +235,68 @@
     <p class="section-label">My Work</p>
     <h2 class="section-title">Selected Projects</h2>
     <div class="divider" style="margin:0 auto 1rem;"></div>
-    <p style="color:var(--ink2); font-size:0.95rem;">A showcase of my graphic design projects.</p>
+    <p style="color:var(--ink2); font-size:0.95rem;">A showcase of my graphic design projects. Click to view.</p>
   </div>
   <div class="portfolio-grid" id="portfolioGrid">
 
-    <!--
-    =============================================
-    عشان تضيف تصميم جديد:
-    1. ارفع الصورة على GitHub (مثلاً design1.png)
-    2. انسخ الكارت ده وغير اسم الصورة والعنوان
-    =============================================
+    <div class="project-card" onclick="openDesign('design1.png','شهادة تقدير لأعضاء فريق المناقشة')" style="cursor:pointer;">
+      <img src="design1.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 1" onerror="this.style.display='none'"/>
+      <div class="project-body">
+        <p class="project-cat">Graphic Design</p>
+        <h3>شهادة تقدير — فريق المناقشة</h3>
+        <p>شهادة تقدير لأعضاء فريق المناقشة الخاص بي.</p>
+      </div>
+    </div>
 
-    <div class="project-card">
-      <img src="design1.png" style="width:100%;height:200px;object-fit:cover;" alt="Design"/>
+    <div class="project-card" onclick="openDesign('design2.png','منيو لأهم مطاعم مدينة دمنهور')" style="cursor:pointer;">
+      <img src="design2.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 2" onerror="this.style.display='none'"/>
+      <div class="project-body">
+        <p class="project-cat">Graphic Design</p>
+        <h3>منيو مطاعم دمنهور</h3>
+        <p>منيو لأهم مطاعم مدينة دمنهور.</p>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="openDesign('design3.png','ديزاين مخصوص لأعضاء فريق المناقشة')" style="cursor:pointer;">
+      <img src="design3.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 3" onerror="this.style.display='none'"/>
+      <div class="project-body">
+        <p class="project-cat">Graphic Design</p>
+        <h3>ديزاين فريق المناقشة</h3>
+        <p>ديزاين مخصوص لأعضاء فريق المناقشة.</p>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="openDesign('design4.png','أشهر عيادات الأسنان في الإسكندرية')" style="cursor:pointer;">
+      <img src="design4.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 4" onerror="this.style.display='none'"/>
+      <div class="project-body">
+        <p class="project-cat">Graphic Design</p>
+        <h3>عيادات الأسنان — الإسكندرية</h3>
+        <p>أشهر عيادات الأسنان في الإسكندرية — عملية تركيبات ثابتة.</p>
+      </div>
+    </div>
+
+    <!--
+    عشان تضيف تصميم جديد، انسخ الكارت ده:
+
+    <div class="project-card" onclick="openDesign('design5.png','اسم التصميم')" style="cursor:pointer;">
+      <img src="design5.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" onerror="this.style.display='none'"/>
       <div class="project-body">
         <p class="project-cat">Graphic Design</p>
         <h3>اسم التصميم</h3>
-        <p>وصف قصير</p>
+        <p>وصف قصير.</p>
       </div>
     </div>
     -->
 
-    <!-- تصميم ١ -->
-    <div class="project-card">
-      <img src="design1.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 1" onerror="this.style.display='none'"/>
-      <div class="project-body">
-        <p class="project-cat">Graphic Design</p>
-        <h3>Design 1</h3>
-        <p>Add a short description here.</p>
-      </div>
-    </div>
-
-    <!-- تصميم ٢ -->
-    <div class="project-card">
-      <img src="design2.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 2" onerror="this.style.display='none'"/>
-      <div class="project-body">
-        <p class="project-cat">Graphic Design</p>
-        <h3>Design 2</h3>
-        <p>Add a short description here.</p>
-      </div>
-    </div>
-
-    <!-- تصميم ٣ -->
-    <div class="project-card">
-      <img src="design3.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 3" onerror="this.style.display='none'"/>
-      <div class="project-body">
-        <p class="project-cat">Graphic Design</p>
-        <h3>Design 3</h3>
-        <p>Add a short description here.</p>
-      </div>
-    </div>
-
   </div>
 </section>
+
+<!-- DESIGN LIGHTBOX -->
+<div class="design-lightbox" id="designLightbox" onclick="closeDesign()">
+  <span class="design-lightbox-close" onclick="closeDesign()">✕</span>
+  <img id="designLightboxImg" src="" alt="Design"/>
+  <div class="design-lightbox-title" id="designLightboxTitle"></div>
+</div>
 
 <section id="certificates">
   <div style="text-align:center; max-width:600px; margin:0 auto 1rem;">
@@ -391,6 +408,16 @@
   }
 
   updateUI();
+
+
+  function openDesign(src, title) {
+    document.getElementById('designLightboxImg').src = src;
+    document.getElementById('designLightboxTitle').textContent = title;
+    document.getElementById('designLightbox').classList.add('open');
+  }
+  function closeDesign() {
+    document.getElementById('designLightbox').classList.remove('open');
+  }
 
   function openLightbox(src) {
     document.getElementById('lightboxImg').src = src;
