@@ -85,6 +85,19 @@
     .divider { width: 60px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 2rem; }
     
 
+
+    /* ALBUM LIGHTBOX */
+    .album-lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.93); z-index:999; align-items:center; justify-content:center; flex-direction:column; gap:1rem; }
+    .album-lightbox.open { display:flex; }
+    .album-lightbox img { max-width:85vw; max-height:75vh; border-radius:12px; object-fit:contain; transition: opacity 0.2s; }
+    .album-title { color:white; font-size:1rem; font-weight:500; }
+    .album-counter { color:rgba(255,255,255,0.5); font-size:0.82rem; }
+    .album-close { position:absolute; top:1.5rem; right:2rem; color:white; font-size:2rem; cursor:pointer; }
+    .album-nav { display:flex; gap:2rem; align-items:center; }
+    .album-btn { background:rgba(255,255,255,0.15); border:none; color:white; font-size:1.5rem; width:48px; height:48px; border-radius:50%; cursor:pointer; transition:background 0.2s; display:flex; align-items:center; justify-content:center; }
+    .album-btn:hover { background:rgba(255,255,255,0.3); }
+    .album-btn:disabled { opacity:0.2; cursor:default; }
+
     /* DESIGN LIGHTBOX */
     .design-lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:999; align-items:center; justify-content:center; flex-direction:column; gap:1rem; }
     .design-lightbox.open { display:flex; }
@@ -142,6 +155,14 @@
       #contact { padding: 4rem 1.5rem; }
     }
   </style>
+<!-- OG Tags for WhatsApp & Social Media -->
+<meta property="og:title" content="Eng. Omar Mohamed — Graphic Designer"/>
+<meta property="og:description" content="Graphic Designer crafting bold visuals, brand identities, and creative designs that leave a lasting impression."/>
+<meta property="og:image" content="https://omar-elmon.github.io/Omar-portfolio/preview.png"/>
+<meta property="og:url" content="https://omar-elmon.github.io/Omar-portfolio/"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B4BFWQPL8H"></script>
 <script>
@@ -243,67 +264,66 @@
     <p class="section-label">My Work</p>
     <h2 class="section-title">Selected Projects</h2>
     <div class="divider" style="margin:0 auto 1rem;"></div>
-    <p style="color:var(--ink2); font-size:0.95rem;">A showcase of my graphic design projects. Click to view.</p>
+    <p style="color:var(--ink2); font-size:0.95rem;">A showcase of my graphic design projects. Click any to view the full album.</p>
   </div>
   <div class="portfolio-grid" id="portfolioGrid">
 
-    <div class="project-card" onclick="openDesign('design1.png','شهادة تقدير لأعضاء فريق المناقشة')" style="cursor:pointer;">
-      <img src="design1.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 1" onerror="this.style.display='none'"/>
+    <div class="project-card" onclick="openAlbum(0)" style="cursor:pointer;">
+      <img src="design1_1.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 1" onerror="this.style.display='none'"/>
       <div class="project-body">
         <p class="project-cat">Graphic Design</p>
-        <h3>شهادة تقدير — فريق المناقشة</h3>
-        <p>شهادة تقدير لأعضاء فريق المناقشة الخاص بي.</p>
+        <h3>Appreciation Certificate — Discussion Team</h3>
+        <p>Certificate of appreciation for my discussion team members.</p>
       </div>
     </div>
 
-    <div class="project-card" onclick="openDesign('design2.png','منيو لأهم مطاعم مدينة دمنهور')" style="cursor:pointer;">
-      <img src="design2.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 2" onerror="this.style.display='none'"/>
+    <div class="project-card" onclick="openAlbum(1)" style="cursor:pointer;">
+      <img src="design2_1.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 2" onerror="this.style.display='none'"/>
       <div class="project-body">
         <p class="project-cat">Graphic Design</p>
-        <h3>منيو مطاعم دمنهور</h3>
-        <p>منيو لأهم مطاعم مدينة دمنهور.</p>
+        <h3>Aya Restaurant & Grill Menu</h3>
+        <p>Menu design for Aya Restaurant & Grill in Damanhour.</p>
       </div>
     </div>
 
-    <div class="project-card" onclick="openDesign('design3.png','ديزاين مخصوص لأعضاء فريق المناقشة')" style="cursor:pointer;">
-      <img src="design3.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 3" onerror="this.style.display='none'"/>
+    <div class="project-card" onclick="openAlbum(2)" style="cursor:pointer;">
+      <img src="design3_1.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 3" onerror="this.style.display='none'"/>
       <div class="project-body">
         <p class="project-cat">Graphic Design</p>
-        <h3>ديزاين فريق المناقشة</h3>
-        <p>ديزاين مخصوص لأعضاء فريق المناقشة.</p>
+        <h3>Discussion Team Design</h3>
+        <p>Custom design for discussion team members.</p>
       </div>
     </div>
 
-    <div class="project-card" onclick="openDesign('design4.png','أشهر عيادات الأسنان في الإسكندرية')" style="cursor:pointer;">
-      <img src="design4.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 4" onerror="this.style.display='none'"/>
+    <div class="project-card" onclick="openAlbum(3)" style="cursor:pointer;">
+      <img src="design4_1.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 4" onerror="this.style.display='none'"/>
       <div class="project-body">
         <p class="project-cat">Graphic Design</p>
-        <h3>عيادات الأسنان — الإسكندرية</h3>
-        <p>أشهر عيادات الأسنان في الإسكندرية — عملية تركيبات ثابتة.</p>
+        <h3>Dental Clinics — Alexandria</h3>
+        <p>Top dental clinics in Alexandria — fixed dental prosthetics.</p>
       </div>
     </div>
 
     <!--
-    عشان تضيف تصميم جديد، انسخ الكارت ده:
-
-    <div class="project-card" onclick="openDesign('design5.png','اسم التصميم')" style="cursor:pointer;">
-      <img src="design5.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" onerror="this.style.display='none'"/>
-      <div class="project-body">
-        <p class="project-cat">Graphic Design</p>
-        <h3>اسم التصميم</h3>
-        <p>وصف قصير.</p>
-      </div>
-    </div>
+    عشان تضيف ألبوم جديد:
+    1. ضيف مصفوفة جديدة في albums في الـ JS زي:
+       ["design5_1.png","design5_2.png","design5_3.png"]
+    2. انسخ كارت وغير openAlbum(4) والاسم والوصف
     -->
 
   </div>
 </section>
 
-<!-- DESIGN LIGHTBOX -->
-<div class="design-lightbox" id="designLightbox" onclick="closeDesign()">
-  <span class="design-lightbox-close" onclick="closeDesign()">✕</span>
-  <img id="designLightboxImg" src="" alt="Design"/>
-  <div class="design-lightbox-title" id="designLightboxTitle"></div>
+<!-- ALBUM LIGHTBOX -->
+<div class="album-lightbox" id="albumLightbox">
+  <span class="album-close" onclick="closeAlbum()">✕</span>
+  <div class="album-title" id="albumTitle"></div>
+  <img id="albumImg" src="" alt="Design"/>
+  <div class="album-nav">
+    <button class="album-btn" id="prevBtn" onclick="albumNav(-1)">‹</button>
+    <div class="album-counter" id="albumCounter"></div>
+    <button class="album-btn" id="nextBtn" onclick="albumNav(1)">›</button>
+  </div>
 </div>
 
 <section id="certificates">
@@ -426,6 +446,63 @@
   function closeDesign() {
     document.getElementById('designLightbox').classList.remove('open');
   }
+
+
+  // =============================================
+  // Albums — عشان تضيف صور لألبوم:
+  // غير design1_1.png, design1_2.png وهكذا
+  // =============================================
+    const albums = [
+    // Album 1 — Appreciation Certificate
+    ["design1_1.png","design1_2.png","design1_3.png","design1_4.png","design1_5.png","design1_6.png","design1_7.png","design1_8.png","design1_9.png","design1_10.png","design1_11.png","design1_12.png","design1_13.png","design1_14.png","design1_15.png","design1_16.png","design1_17.png","design1_18.png","design1_19.png","design1_20.png","design1_21.png","design1_22.png","design1_23.png","design1_24.png","design1_25.png","design1_26.png","design1_27.png","design1_28.png","design1_29.png","design1_30.png","design1_31.png"],
+    // Album 2 — Aya Restaurant Menu
+    ["design2_1.png","design2_2.png"],
+    // Album 3 — Discussion Team Design
+    ["design3_1.png"],
+    // Album 4 — Dental Clinics
+    ["design4_1.png","design4_2.png","design4_3.png"],
+  ];
+
+  const albumTitles = [
+    "Appreciation Certificate — Discussion Team",
+    "Aya Restaurant & Grill Menu",
+    "Discussion Team Design",
+    "Dental Clinics — Alexandria",
+  ];
+
+  let currentAlbum = 0;
+  let currentImg = 0;
+
+  function openAlbum(albumIndex) {
+    currentAlbum = albumIndex;
+    currentImg = 0;
+    document.getElementById('albumTitle').textContent = albumTitles[albumIndex];
+    document.getElementById('albumLightbox').classList.add('open');
+    showAlbumImg();
+  }
+
+  function closeAlbum() {
+    document.getElementById('albumLightbox').classList.remove('open');
+  }
+
+  function showAlbumImg() {
+    const imgs = albums[currentAlbum];
+    document.getElementById('albumImg').src = imgs[currentImg];
+    document.getElementById('albumCounter').textContent = (currentImg+1) + ' / ' + imgs.length;
+    document.getElementById('prevBtn').disabled = currentImg === 0;
+    document.getElementById('nextBtn').disabled = currentImg === imgs.length - 1;
+  }
+
+  function albumNav(dir) {
+    const imgs = albums[currentAlbum];
+    currentImg = Math.max(0, Math.min(imgs.length-1, currentImg + dir));
+    showAlbumImg();
+  }
+
+  // Close on background click
+  document.getElementById('albumLightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeAlbum();
+  });
 
   function openLightbox(src) {
     document.getElementById('lightboxImg').src = src;
