@@ -304,6 +304,15 @@
       </div>
     </div>
 
+    <div class="project-card" onclick="openAlbum(4)" style="cursor:pointer;">
+      <img src="design5_1.png" style="width:100%;height:200px;object-fit:cover;border-radius:24px 24px 0 0;" alt="Design 5" onerror="this.style.display='none'"/>
+      <div class="project-body">
+        <p class="project-cat">Graphic Design</p>
+        <h3>Mini Box Burger — Qatar</h3>
+        <p>Menu design for Mini Box Burger restaurant in Qatar.</p>
+      </div>
+    </div>
+
     <!--
     عشان تضيف ألبوم جديد:
     1. ضيف مصفوفة جديدة في albums في الـ JS زي:
@@ -461,6 +470,8 @@
     ["design3_1.png"],
     // Album 4 — Dental Clinics
     ["design4_1.png","design4_2.png","design4_3.png"],
+    // Album 5 — Mini Box Burger Qatar
+    ["design5_1.png","design5_2.png","design5_3.png"],
   ];
 
   const albumTitles = [
@@ -468,6 +479,7 @@
     "Aya Restaurant & Grill Menu",
     "Discussion Team Design",
     "Dental Clinics — Alexandria",
+    "Mini Box Burger — Qatar",
   ];
 
   let currentAlbum = 0;
@@ -487,7 +499,12 @@
 
   function showAlbumImg() {
     const imgs = albums[currentAlbum];
-    document.getElementById('albumImg').src = imgs[currentImg];
+    const imgEl = document.getElementById('albumImg');
+    imgEl.style.opacity = '0';
+    setTimeout(() => {
+      imgEl.src = imgs[currentImg];
+      imgEl.onload = () => { imgEl.style.opacity = '1'; };
+    }, 100);
     document.getElementById('albumCounter').textContent = (currentImg+1) + ' / ' + imgs.length;
     document.getElementById('prevBtn').disabled = currentImg === 0;
     document.getElementById('nextBtn').disabled = currentImg === imgs.length - 1;
@@ -497,7 +514,39 @@
     const imgs = albums[currentAlbum];
     currentImg = Math.max(0, Math.min(imgs.length-1, currentImg + dir));
     showAlbumImg();
+    // preload next image
+    const next = currentImg + 1;
+    if (next < imgs.length) {
+      const preload = new Image();
+      preload.src = imgs[next];
+    }
   }
+
+  function preloadAlbum(albumIndex) {
+    const imgs = albums[albumIndex];
+    imgs.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }
+
+
+  // SWIPE SUPPORT
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  document.getElementById('albumLightbox').addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  document.getElementById('albumLightbox').addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) albumNav(1);  // swipe left = next
+      else albumNav(-1);           // swipe right = prev
+    }
+  }, { passive: true });
 
   // Close on background click
   document.getElementById('albumLightbox').addEventListener('click', function(e) {
